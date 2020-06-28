@@ -1,0 +1,73 @@
+
+<h1> <div class="section" style="background-image: url(https://img2.goodfon.com/wallpaper/nbig/d/8c/eda-sladkoe-desert-morozhenoe.jpg);height: 400px;text-align: center;vertical-align: middle;
+line-height: 400px;" >
+  <!-- container -->
+  
+    <!-- row -->
+    
+        
+         <p style="font-style: italic;font-family: serif;color: black;">ADMIN
+            </p>
+          
+         
+          
+       
+     
+    <!-- /row -->
+  
+  <!-- /container -->
+</div></h1>
+
+
+
+
+<div class="container" style="font-style: italic;font-family: serif;">
+     <div class="text-right mb-3">
+         <a routerLink="/add-a-product" class="btn btn-success">Add Products</a>
+           &nbsp;
+         <a  class="btn btn-warning" (click)=logout()>Log Out</a>
+     </div>
+  <div class="row">
+
+    <h3>All Products  </h3>
+
+
+    <div class="col-md-12">
+      <table class="table table-stripped">
+        <thead>
+          <tr style="background-color: grey;">
+            <td>S.No</td>
+            <td>Image</td>
+            <td>Name</td>
+            <td>desccription</td>
+            <td>quantity</td>
+            <td>price</td>
+            <td>Actions</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products; let i = index">
+           <b> <td>{{ i + 1 }}</td></b>
+            <td>
+              <div class="product-img">
+                <img [src]="product.image" />
+              </div>
+            </td>
+           <h4> <td>{{ product.name }}</td> </h4>
+            <td>{{ product.description | slice: 0:100 }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.price | currency: "INR. " }}</td>
+            <td>
+              <button class="btn btn-primary" (click)="edit(product.id)">
+                <i class="fa fa-edit"></i>
+              </button>
+              <button class="btn btn-danger" (click)="delete(product.id)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

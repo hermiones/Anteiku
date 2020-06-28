@@ -1,0 +1,224 @@
+<ngx-spinner
+  bdColor= "rgba(151,149,149,0.4)"
+  size="large"
+  color="orange"
+  type="ball-clip-rotate-pulse"
+  fullScreen="true"
+>
+  <p style="font-size: 20px; color: red;">Booking Order...</p>
+</ngx-spinner>
+
+
+
+
+<h1> <div class="section" style="background-image: url(https://img2.goodfon.com/wallpaper/nbig/d/8c/eda-sladkoe-desert-morozhenoe.jpg);height: 400px;text-align: center;vertical-align: middle;
+line-height: 400px;" >
+  <!-- container -->
+  
+    <!-- row -->
+    
+        
+         <p style="font-style: italic;font-family: serif;color: red;">CHECK OUT
+            </p>
+          
+         
+          
+       
+     
+    <!-- /row -->
+  
+  <!-- /container -->
+</div></h1>
+
+<div class="section" *ngIf="cartTotal > 0">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+
+      <div class="col-md-7">
+        <!-- Billing Details -->
+        <form #billingForm="ngForm" >
+          <div class="billing-details">
+            <div class="section-title">
+              <h3 class="title">Billing address</h3>
+            </div>
+            <div class="form-group">
+              <input class="input" type="text" name="first-name" required minlength="2" placeholder="First Name" [(ngModel)]="model.firstName" #firstName="ngModel" ngModel pattern="[a-zA-Z]*">
+              <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+                  <div *ngIf="firstName.errors.required"> Fname is required.
+                  </div>
+                  <div *ngIf="firstName.errors.minlength">
+                 Fname needs to be 2 characters long.
+                  </div>
+                 <div *ngIf="firstName.errors.pattern">
+                          Fname needs to be alphabetical.
+                          </div>
+                   </div>
+            </div>
+            <div class="form-group">
+              <input class="input" type="text" name="last-name" required minlength="2" placeholder="Last Name" [(ngModel)]="model.lastName" #lastName="ngModel" ngModel pattern="[a-zA-Z]*">
+               <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+                  <div *ngIf="lastName.errors.required"> Lastname is required.
+                  </div>
+                  <div *ngIf="lastName.errors.minlength">
+                 Lastname needs to be 2 characters long.
+                  </div>
+                   <div *ngIf="lastName.errors.pattern">
+                          Lname needs to be alphabetical.
+                          </div>
+                   </div>
+            </div>
+            <div class="form-group">
+              <input class="input" type="email" name="email" placeholder="Email" [(ngModel)]="model.email" #email="ngModel" disabled="">
+            </div>
+           <div class="form-group">
+              <input  class="input" type="text" name="address" required minlength="10" placeholder="Address" [(ngModel)]="model.address" #address="ngModel">
+                  <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+                  <div *ngIf="address.errors.required"> Address is required.
+                  </div>
+                  <div *ngIf="address.errors.minlength">
+                  Address needs to be 10 characters long.
+                  </div>
+                   </div>
+            </div>
+              <div class="form-group">
+              <input  class="input" type="text" name="city" required minlength="3" placeholder="city" [(ngModel)]="model.city" #city="ngModel">
+                  <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
+                  <div *ngIf="city.errors.required"> City is required.
+                  </div>
+                  <div *ngIf="city.errors.minlength">
+                  City needs to be 3 characters long.
+                  </div>
+                   </div>
+            </div>
+            
+            <div class="form-group">
+              <input  class="input" type="text" name="country" required minlength="3" placeholder="country" [(ngModel)]="model.country" #country="ngModel">
+                  <div *ngIf="country.invalid && (country.dirty || country.touched)" class="alert alert-danger">
+                  <div *ngIf="country.errors.required"> Country is required.
+                  </div>
+                  <div *ngIf="country.errors.minlength">
+                  Country needs to be 3 characters long.
+                  </div>
+                   </div>
+            </div>
+
+            <div class="form-group">
+              <input class="input" type="text" name="zip-code" required minlength="6" placeholder="ZIP Code" [(ngModel)]="model.zip" #zip="ngModel" ngModel pattern="[0-9 ]*">
+
+               <div *ngIf="zip.invalid && (zip.dirty || zip.touched)" class="alert alert-danger">
+                  <div *ngIf="zip.errors.required"> ZipCode is required.
+                  </div>
+                  <div *ngIf="zip.errors.minlength">
+                  Zipcode needs to be 6 characters long.
+                  </div>
+                  <div *ngIf="zip.errors.pattern">
+                          Zipcode needs to be numeric
+                          </div>
+                   </div>
+            </div>
+
+            <div class="form-group">
+              <input class="input" type="tel" name="tel" placeholder="Telephone" required minlength="10" maxlength="10" [(ngModel)]="model.phone" #phone="ngModel" ngModel pattern="[0-9 ]*">
+              <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+                  <div *ngIf="phone.errors.required"> Telephone is required.
+                  </div>
+                  <div *ngIf="phone.errors.minlength">
+                  Telephone needs to be 10 characters long.
+                  </div>
+                  <div *ngIf="phone.errors.maxlength">
+                    Telephone can't be more than 10 characters long.
+                    </div>
+                   <div *ngIf="phone.errors.pattern">
+                          Telephone needs to be numeric
+                          </div>
+                   </div>
+            </div>
+            <div class="form-group">
+             <textarea class="input" type="text" name="note" placeholder="Order Notes(optional)"  [(ngModel)]="model.note" #note="ngModel"></textarea>
+              <div *ngIf="note.invalid && (note.dirty || note.touched)" class="alert alert-danger">
+                
+                  
+                   </div>
+            </div>
+            <!-- <div class="form-group">
+              <div class="input-checkbox">
+                <input type="checkbox" id="create-account">
+                <label for="create-account">
+                  <span></span>
+                  Create Account?
+                </label>
+                <div class="caption">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                  <input class="input" type="password" name="password" placeholder="Enter Your Password">
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <!-- <div class="form-group">
+            <button type="submit" class="btn btn-warning btn-sm" [disabled]="billingForm.invalid || billingForm.pending">Submit Form</button>
+          </div> -->
+        </form>
+
+        <!-- /Billing Details -->
+
+        <!-- Order notes -->
+        <!-- <div class="order-notes">
+          <textarea class="input" placeholder="Order Notes"></textarea>
+        </div> -->
+        <!-- /Order notes -->
+      </div>
+
+      <!-- Order Details -->
+      <div class="col-md-5 order-details">
+        <div class="section-title text-center">
+          <h3 class="title">Your Order</h3>
+        </div>
+        <div class="order-summary">
+          <div class="order-col">
+            <div><strong>PRODUCT</strong></div>
+            <div><strong>TOTAL</strong></div>
+          </div>
+          <div class="order-products">
+            <div class="order-col" *ngFor="let c of cartData.data">
+              <div>{{c.numInCart}} x {{c.product.name}}</div>
+              <div>{{(c.product.price * c.numInCart) | currency:'INR'}}</div>
+            </div>
+
+          </div>
+          <div class="order-col">
+            <div>Shiping</div>
+            <div><strong>FREE</strong></div>
+          </div>
+          <div class="order-col">
+            <div><strong>TOTAL</strong></div>
+            <div><strong class="order-total">{{cartTotal | currency:'INR'}}</strong></div>
+          </div>
+        </div>
+
+        <div class="input-checkbox">
+          <input type="checkbox" id="terms">
+          <label for="terms">
+            <span></span>
+            I've read and accept the <a href="#">terms & conditions</a>
+          </label>
+        </div >
+        <button class="btn btn-outline-danger btn-sm my-2 btn-block order-submit"
+                (click)="onCheckout()"
+                [disabled]="!isValidToCheckout()"
+                [class.disabled]="cartTotal<=0"
+        >Place order</button>
+      </div>
+      <!-- /Order Details -->
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<div class="text-center my-5" *ngIf="cartData.total <= 0;">
+  <h4>Your Cart Is Empty</h4>
+  <button class="btn btn-primary btn-lg mt-3" routerLink="/">GO TO SHOP</button>
+</div>

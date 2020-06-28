@@ -1,0 +1,74 @@
+<body style="background-image
+: url('https://img4.goodfon.com/wallpaper/nbig/3/c3/konfety-rozovyi-fon-zhevatelnye-konfety-rozhok.jpg');">
+
+<div class="background">
+<div class="container">
+  <div class="screen">
+    <div class="screen-header">
+      <div class="screen-header-left">
+        <div class="screen-header-button close"></div>
+        <div class="screen-header-button maximize"></div>
+        <div class="screen-header-button minimize"></div>
+      </div>
+      <div class="screen-header-right">
+        <div class="screen-header-ellipsis"></div>
+        <div class="screen-header-ellipsis"></div>
+        <div class="screen-header-ellipsis"></div>
+      </div>
+    </div>
+    <div class="screen-body">
+      <div class="screen-body-item left">
+        <div class="app-title">
+          <span>CONTACT</span>
+          <span>US</span>
+        </div>
+        <div class="app-contact">CONTACT INFO : +033 2641-6228</div>
+      </div>
+      <div class="screen-body-item">
+        <form class="app-form" [formGroup]="productForm" (ngSubmit)="insertContact()" class="form">
+          <div class="app-form-group">
+            <input class="app-form-control" placeholder="NAME" formControlName="name">
+            <div
+            *ngIf="
+              productForm.get('name').invalid &&
+              (productForm.get('name').dirty ||
+                productForm.get('name').touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="productForm.get('name')?.errors?.required" class="app-form-group">
+              Full Name is required.
+            </div>
+          </div>
+          <div class="app-form-group">
+            <input class="app-form-control" formControlName="email" placeholder="EMAIL">
+            <div
+            *ngIf="
+              productForm.get('email').invalid &&
+              (productForm.get('email').dirty ||
+                productForm.get('email').touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="productForm.get('email')?.errors?.required">
+              Email is required.
+            </div>
+          </div>
+         
+         
+        
+          <div class="app-form-group buttons">
+            <button class="app-form-button"  type="submit" [disabled]="
+            (productForm.invalid || productForm.pending) &&
+            productForm.touched
+          ">ADD</button>
+            
+           
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+</div>

@@ -1,0 +1,375 @@
+
+<div class="containeree" style="width: 100%;">
+  <div class="carousel" >
+    <input type="radio" id="carousel-1" name="carousel[]" checked>
+    <input type="radio" id="carousel-2" name="carousel[]">
+     <input type="radio" id="carousel-3" name="carousel[]">
+    <input type="radio" id="carousel-4" name="carousel[]">
+    <input type="radio" id="carousel-5" name="carousel[]">
+    <ul class="carousel__items">
+      <li class="carousel__item"><img src="assets/img/crsl1.jpg" alt=""></li> 
+      <li class="carousel__item"><img src="assets/img/crsl2.jpg" alt=""></li>
+      <li class="carousel__item"><img src="assets/img/crsl3.jpg" alt=""></li>
+      <li class="carousel__item"><img src="assets/img/crsl4.jpg" alt=""></li>
+      <li class="carousel__item"><img src="assets/img/crsl5.jpg" alt=""></li>
+    </ul>
+     <div class="carousel__prev">
+      <label for="carousel-1"></label>
+      <label for="carousel-2"></label>
+      <label for="carousel-3"></label>
+      <label for="carousel-4"></label>
+      <label for="carousel-5"></label>
+     </div>
+     <div class="carousel__next">
+       <label for="carousel-1"></label>
+       <label for="carousel-2"></label>
+       <label for="carousel-3"></label>
+       <label for="carousel-4"></label>
+       <label for="carousel-5"></label>
+     </div>
+     
+   </div>
+ </div>
+
+
+<!-- SECTION -->
+<div class="section" style="width: 100%">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <!-- shop -->
+      <div class="col-md-4 col-xs-6">
+        <div class="shop">
+          <div class="shop-img">
+            <img src="https://1.bp.blogspot.com/-Tsl8n418Jzc/V2ZaMUGnyAI/AAAAAAAABsg/U6bg6cK6w24r4S7xKMZJWPOnmdkQoff5wCK4B/s1600/rainbow%2Bicecream.jpg" alt="" height="220px">
+          </div>
+          <div class="shop-body">
+            <h3 style="font-family: serif;font-style: italic;">ICE <br>Pops?</h3>
+            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- /shop -->
+
+      <!-- shop -->
+      <div class="col-md-4 col-xs-6">
+        <div class="shop">
+          <div class="shop-img">
+            <img src="https://thumbor.thedailymeal.com/F9UTeh35aRBb-jDyf74L8SohmyQ=//https://www.thedailymeal.com/sites/default/files/recipe/2017/shutterstock_510881971.jpg" alt="" height="220px">
+          </div>
+          <div class="shop-body">
+            <h3 style="font-family: serif;font-style: italic;">Nachos or<br>Fries?</h3>
+            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- /shop -->
+<div class="col-md-4 col-xs-6" >
+        <div class="shop">
+          <div class="shop-img" >
+            <img src="https://images.eatthismuch.com/site_media/img/971403_tabitharwheeler_21276d22-69c2-49ec-9abd-6ae2bf363895.jpg" alt="" height="220px">
+          </div>
+          <div class="shop-body">
+            <h3 style="font-family: serif;font-style: italic;">Desserts <br> This way..</h3>
+            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- shop -->
+      
+      <!-- /shop -->
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+   <!-- section title -->
+      <div class="col-md-12">
+        <div class="section-title">
+          <h3 class="title">New Products</h3>
+          <div class="section-nav">
+            <ul class="section-tab-nav tab-nav">
+              <li *ngFor="let category of categories; let i= index;" [class.active]="i===0" (click)="activateTab(category.id)"><a data-toggle="tab" href="#{{ category.id }}" >{{ category.title }}</a></li>
+            </ul>
+            
+          </div>
+        </div>
+      </div>
+      
+      <!-- /section title -->
+
+        <!-- Products tab & slick -->
+        <div class="tab-content" id="myTabContent">
+          <div *ngFor="let category of categories; let i = index" [class.show]="activeCategoryTab ===category.id" [class.active]="activeCategoryTab ===category.id" class="tab-pane fade" id="{{ category.id }}" role="tabpanel" > 
+          <div class="col-md-12">
+            <div class="row">
+              <div class="products-tabs">
+                <!-- tab -->
+                <div id="tab2" class="tab-pane fade in active">
+                  <div class="products-slick" data-nav="#slick-nav-2">
+                    <div class="" style="width: 100%;">
+                        <!-- product -->
+                      <div class="product col-md-3 col-xs-12 float-left" *ngFor="let product of categoryAssociatedProducts[category.id]">
+                        
+                        <div class="product-img">
+                           <img [src]="product.image" alt="{{product.name}}" width="200px" height="200px" class="card-img-top" style="cursor: pointer;" (click)="selectProduct(product.id)">
+                          
+                          
+                        </div>
+                        <div class="product-body">
+                          <h3 class="product-name"><a href="#">{{product.name | titlecase}}</a></h3>
+                          <h4 class="product-price">{{product.price | currency:'INR'}}</h4>
+              </div>
+                          <div class="add-to-cart">
+                            
+                            <button class="add-to-cart-btn"  [class.disabled]="product.quantity < 1"
+                            [class.btn-outline-danger]="product.quantity < 1"
+                            (click)="AddToCart(product.id)"><i class="fa fa-shopping-cart"></i> {{ product.quantity < 1 ? "NO STOCK" : "Add"}}</button>
+                          </div>
+                        
+                      
+                      <!-- /product -->
+                      </div>
+                    </div>
+
+  
+
+  
+
+                  </div>
+                  <div id="slick-nav-2" class="products-slick-nav"></div>
+                </div>
+                <!-- /tab -->
+              </div>
+            </div>
+          </div>
+          </div>
+    </div>
+          
+<!-- SECTION -->
+
+<!-- /SECTION -->
+
+<!-- HOT DEAL SECTION -->
+<div class="section" style="background-image: url(https://images.hdqwalls.com/download/hot-spicy-burger-ys-1366x768.jpg);">
+  <!-- container -->
+  <div class="container" style="background-color: transparent;">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hot-deal">
+          <ul class="hot-deal-countdown">
+            <li>
+              <div >
+                <h3 style="color: white;">02</h3>
+                <span>Days</span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>10</h3>
+                <span>Hours</span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>34</h3>
+                <span>Mins</span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>60</h3>
+                <span>Secs</span>
+              </div>
+            </li>
+          </ul>
+          <h2 class="text-uppercase" style="color: white;">hot deal this week</h2>
+          <p style="color: white;font-style: italic;font-family: serif;">Student Discount Up to 50% OFF</p>
+          <a class="primary-btn cta-btn" href="#">Shop now</a>
+        </div>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /HOT DEAL SECTION -->
+<!-- SECTION -->
+      
+  <!-- SECTION -->
+  <div class="section">
+    <!-- container -->
+    <div class="container" style="background-image: url(https://c4.wallpaperflare.com/wallpaper/335/651/714/candy-4k-images-for-desktop-background-wallpaper-preview.jpg);">
+      <!-- row -->
+      <div class="row" >
+      
+
+        <div class="col-md-12 col-xs-6 centre" style="
+            margin: auto;
+            width: 60%;
+            padding : 10px;
+          " *ngFor="let variety of varieties; let i = index">
+       
+      
+           <h4 class="title" style="
+           margin: auto;
+           width: 60%;
+           padding : 10px;
+         ">{{ variety.title }}</h4>
+            <br><br>
+            <owl-carousel-o [options]="customOptions" >
+              <ng-container *ngFor="let product of varietyAssociatedProducts[variety.id]">
+                <ng-template carouselSlide >
+                  <div class="wrapper">
+                    <div class="product-imgg">
+                      <img [src]="product.image" alt="{{product.name}}"  class="card-img-top" style="cursor: pointer;" (click)="selectProduct(product.id)" style="height: 420px;width: 325px;">
+                    </div>
+                    <div class="product-info">
+                      <div class="product-text">
+                        <h1>{{product.name | titlecase}}</h1>
+                        <h2>{{product.price | currency:'INR'}}</h2>
+                        <p>{{product.description.substr(0,5000)}}</p>
+                      </div>
+                      <div class="product-price-btn">
+                        
+                        <button type="button" [class.disabled]="product.quantity < 1"
+                        [class.btn-outline-danger]="product.quantity < 1"
+                        (click)="AddToCart(product.id)">{{ product.quantity < 1 ? "NO STOCK" : "Add"}}</button>
+                      </div>
+                    </div>
+                  </div>
+                 
+
+    
+                  
+                </ng-template>  
+              </ng-container>
+              
+            </owl-carousel-o>
+            
+            
+        
+
+          </div>
+        </div>
+
+    
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /SECTION -->
+
+    <!-- /SECTION -->
+
+<div class="containere">
+  <a href="https://source.unsplash.com/600x600/?sig=1">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTS2o2FtyAhVLOvEHjmrxoCSYZtE3qZl0FRM7tJZElv48OXFF-b&usqp=CAU"/>
+  </a>
+
+  <a href="https://source.unsplash.com/600x800/?sig=12">
+    <img src="https://nadialim.com/wp-content/uploads/2017/05/nutellaShakes-555x463.jpg"/>
+  </a>
+
+  <a href="https://source.unsplash.com/800x600/?sig=71">
+    <img src="https://commonsensehealth.com/wp-content/uploads/2013/07/healthy-smoothie-recipes.jpg"/>
+  </a>
+
+  <a href="https://source.unsplash.com/600x600/?sig=40">
+    <img src="https://www.spendwithpennies.com/wp-content/uploads/2019/09/Chocolate-Milkshake-SpendWithPennies-2-500x500.jpg"/>
+  </a>
+
+  <a href="https://source.unsplash.com/600x600/?sig=32">
+    <img src="https://www.browneyedbaker.com/wp-content/uploads/2020/03/Shamrock-shake-1-square.jpg"/>
+  </a>
+
+  <a href="https://source.unsplash.com/800x800/?sig=7">
+    <img src="https://www.theseasonedmom.com/wp-content/uploads/2015/05/Upside-Down-Pineapple-Cake-Protein-Shake-14.jpg"/>
+  </a>
+
+  <a href="https://source.unsplash.com/600x600/?sig=111">
+    <img src="https://purewows3.imgix.net/images/articles/2019_01/Mocha_Milkshake_Recipe.jpg?auto=format,compress&cs=strip"/>
+  </a>
+
+  <a href="https://source.unsplash.com/600x800/?sig=94">
+    <img src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2018/09/dessert-main-image-molten-cake.jpg"/>
+  </a>
+
+  <a href="https://source.unsplash.com/600x600/?sig=11">
+    <img src="https://static.toiimg.com/thumb/54659021.cms?width=1200&height=1200"/>
+  </a>
+
+  <a href="https://source.unsplash.com/800x600/?sig=68">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSwjdDLz9OTvHMmMOiDIFnlxMamITz-s5Odd3GYDqXXyqicCiFH&usqp=CAU"/>
+  </a>
+
+  <a href="https://source.unsplash.com/600x600/?sig=24">
+    <img src="https://homemadehooplah.com/wp-content/uploads/2018/07/honey-garlic-chicken-wings-1.jpg"/>
+  </a>
+
+  <a href="https://source.unsplash.com/800x800/?sig=55">
+    <img src="https://www.cuisinart.com/share/images/recipes/photos/recipe_11651_258903521.jpg"/>
+  </a>
+
+  <a href="https://source.unsplash.com/600x600/?sig=56">
+    <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fcdn-image.foodandwine.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmedium_2x%2Fpublic%2F201403-xl-classic-buffalo-chicken-wings.jpg%3Fitok%3DJYXgJZ0q"/>
+  </a>
+
+  <a href="https://source.unsplash.com/800x600/?sig=186">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg"/>
+  </a>
+
+  <a href="https://source.unsplash.com/600x600/?sig=117">
+    <img src="https://i2.wp.com/www.foodrepublic.com/wp-content/uploads/2012/03/033_FR11785.jpg?fit=1000%2C665&ssl=1"/>
+  </a>
+
+  <a href="https://source.unsplash.com/800x800/?sig=157">
+    <img src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2015/07/halloumi-burger.jpg"/>
+  </a>
+
+  <a href="https://source.unsplash.com/600x600/?sig=287">
+    <img src="https://www.wallpapermania.eu/images/lthumbs/2012-04/463_delicious-looking-pizza.jpg"/>
+  </a>
+
+  <a href="https://source.unsplash.com/600x800/?sig=307">
+    <img src="https://www.dinneratthezoo.com/wp-content/uploads/2020/01/baked-french-fries-5-500x500.jpg"/>
+  </a>
+</div>
+<!-- NEWSLETTER -->
+<div id="newsletter" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="newsletter">
+          <p>Sign Up for the <strong>NEWSLETTER</strong></p>
+          <form>
+            <input class="input" type="email" placeholder="Enter Your Email">
+            <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+          </form>
+          <ul class="newsletter-follow">
+            <li>
+              <a href="#"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-pinterest"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /NEWSLETTER -->

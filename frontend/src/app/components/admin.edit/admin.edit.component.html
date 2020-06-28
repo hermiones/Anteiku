@@ -1,0 +1,152 @@
+<!-- BREADCRUMB -->
+<body style="background-image
+  : url('https://i2.wp.com/cherritybar.com/wp-content/uploads/2018/02/cherries-on-pink-background.jpeg?fit=2400%2C1600&ssl=1');">
+
+
+
+
+<!-- SECTION -->
+<div class="section" >
+
+  <!-- container -->
+  <div class="container" >
+    <!-- row -->
+    <div class="row">
+      <!-- Product main img -->
+      <div class="col-md-5 col-md-push-2">
+        <div id="product-main-img">
+          <img [src]="product?.image" alt="image"  style="border-radius: 25px;width: 350px;height: 350px;">
+        </div>
+      </div>
+      <!-- /Product main img -->
+
+      <!-- Product thumb imgs -->
+      <div class="col-md-2  col-md-pull-5">
+        <ng-template [ngIf]="thumbImages.length > 0">
+          <div id="product-imgs">
+            <div class="product-preview" *ngFor="let t of thumbImages">
+              <img [src]="t" alt="image">
+            </div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="thumbImages.length === 0">
+          <div id="product-imgs">
+            <div class="product-preview">
+              <img [src]="product?.image" alt="image">
+            </div>
+          </div>
+        </ng-template>
+
+      </div>
+      <!-- /Product thumb imgs -->
+
+  
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+<div class="background">
+  <div class="container">
+    <div class="screen">
+      <div class="screen-header">
+        <div class="screen-header-left">
+          <div class="screen-header-button close"></div>
+          <div class="screen-header-button maximize"></div>
+          <div class="screen-header-button minimize"></div>
+        </div>
+        <div class="screen-header-right">
+          <div class="screen-header-ellipsis"></div>
+          <div class="screen-header-ellipsis"></div>
+          <div class="screen-header-ellipsis"></div>
+        </div>
+      </div>
+      <div class="screen-body">
+        <div class="screen-body-item left">
+          <div class="app-title">
+            <span>Edit</span>
+            <span>Product</span>
+          </div>
+          <div class="app-contact">CONTACT INFO : +900 744 2351</div>
+        </div>
+        <div class="screen-body-item">
+          <div class="app-form">
+            <div class="app-form-group">
+              <input class="app-form-control" placeholder="NAME" value="{{product?.name}}" [(ngModel)]="product.name" required name="name" #name="ngModel" />
+              <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                <div *ngIf="name.errors.required"> Name is required.
+                </div>
+               
+                 </div>
+            </div>
+            <div class="app-form-group">
+              <textarea class="app-form-control" placeholder="DESCRIPTION" value="{{product?.description}}" [(ngModel)]="product.description" required name="description" #description="ngModel" style="height:150px;font-family: Montserrat;" ></textarea>
+              <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+                <div *ngIf="description.errors.required"> Description is required.
+                </div>
+               
+                 </div>
+            </div>
+            <div class="app-form-group">
+              <textarea class="app-form-control" placeholder="SHORT DESCRIPTION" value="{{product?.short_desc}}" [(ngModel)]="product.short_desc"  required name="short_desc" #short_desc="ngModel"></textarea>>
+              <div *ngIf="short_desc.invalid && (short_desc.dirty || short_desc.touched)" class="alert alert-danger">
+                <div *ngIf="short_desc.errors.required"> Short Description is required.
+                </div>
+               
+                 </div>
+            </div>
+            <div class="app-form-group message">
+              <textarea class="app-form-control" placeholder="ADDITIONAL DESCRIPTION" value="{{product?.add_desc}}" [(ngModel)]="product.add_desc"  required name="add_desc" #add_desc="ngModel"></textarea>>
+              <div *ngIf="add_desc.invalid && (add_desc.dirty || add_desc.touched)" class="alert alert-danger" >
+                <div *ngIf="add_desc.errors.required">Additional Description is required.
+                </div>
+               
+                 </div>
+             
+              
+            </div>
+            <div class="app-form-group message">
+              <input class="app-form-control" placeholder="PRICE" value="{{product?.price}}" [(ngModel)]="product.price" required name="price" #price="ngModel" />>
+              <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+                <div *ngIf="price.errors.required"> Price is required.
+                </div>
+               
+               
+                 </div>
+            </div>
+            <div class="app-form-group message">
+              <input class="app-form-control" placeholder="QUANTITY" value="{{product?.quantity}}" [(ngModel)]="product.quantity" required name="quantity" #quantity="ngModel" />
+              <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger">
+                <div *ngIf="quantity.errors.required"> Quantity is required.
+                </div>
+              
+               
+                 </div>
+            </div>
+            <div class="app-form-group message">
+              <input class="app-form-control" placeholder="IMAGE"  value="{{product?.image}}" [(ngModel)]="product.image" required name="image" #image="ngModel" />>
+              <div *ngIf="image.invalid && (image.dirty || image.touched)" class="alert alert-danger">
+                <div *ngIf="image.errors.required"> Image is required.
+                </div>
+                 </div>
+            </div>
+            <div class="app-form-group message">
+              <textarea class="app-form-control" placeholder="IMAGES"  value="{{product?.images}}" [(ngModel)]="product.images" required name="images" #images="ngModel" style="height:300px;"></textarea>
+              <div *ngIf="images.invalid && (images.dirty || images.touched)" class="alert alert-danger">
+                <div *ngIf="images.errors.required"> Images is required.
+                </div>
+                 </div>
+            </div>
+            
+            <div class="app-form-group buttons">
+              <button class="app-form-button" (click)="edit()" [disabled]="isValidToEdit()">SUBMIT</button>
+              <button class="app-form-button" routerLink="/admin">BACK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

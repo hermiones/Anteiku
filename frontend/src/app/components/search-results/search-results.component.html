@@ -1,0 +1,48 @@
+<!-- SECTION -->
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+
+      <!-- section title -->
+      <div class="col-md-12">
+        <div class="section-title">
+          <h3 class="title">Your search results for '{{ searchTerm | async }}'</h3>
+
+        </div>
+      </div>
+      <!-- /section title -->
+
+   
+        <!-- product -->
+  <div class="product col-md-3 col-xs-12 float-left" *ngFor="let p of products">
+    <div class="product-img">
+       <img [src]="p.image" alt="{{p.name}}" width="200px" height="200px" class="card-img-top" style="cursor: pointer;" (click)="selectProduct(p.id)">
+    </div>
+    <div class="product-body">
+      
+      <h3 class="product-name"><a href="#">{{p.name | titlecase}}</a></h3>
+      <h4 class="product-price">{{p.price | currency:'INR'}}</h4>
+     
+   
+    </div>
+    <div class="add-to-cart">
+      <button class="add-to-cart-btn" [class.disabled]="p.quantity < 1"
+      [class.btn-outline-danger]="p.quantity < 1"
+      (click)="AddToCart(p.id)"
+>
+
+<i class="fa fa-shopping-cart"></i>{{ p.quantity < 1 ? "NO STOCK" : "Add"}} </button>
+    </div>
+  </div>
+  <!-- /product -->
+
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+<!-- /SECTION -->

@@ -1,0 +1,193 @@
+<body style="background-image
+  : url('https://i.pinimg.com/originals/80/c5/94/80c594dc0a100326a1e5d94699304a5f.jpg');">
+
+<div class="background">
+  <div class="container">
+    <div class="screen">
+      <div class="screen-header">
+        <div class="screen-header-left">
+          <div class="screen-header-button close"></div>
+          <div class="screen-header-button maximize"></div>
+          <div class="screen-header-button minimize"></div>
+        </div>
+        <div class="screen-header-right">
+          <div class="screen-header-ellipsis"></div>
+          <div class="screen-header-ellipsis"></div>
+          <div class="screen-header-ellipsis"></div>
+        </div>
+      </div>
+      <div class="screen-body">
+        <div class="screen-body-item left">
+          <div class="app-title">
+            <span>ADD A</span>
+            <span>PRODUCT</span>
+          </div>
+          <div class="app-contact">CONTACT INFO : +900 744 2351</div>
+        </div>
+        <div class="screen-body-item">
+          <form class="app-form" [formGroup]="productForm" (ngSubmit)="insertProduct()" class="form">
+            <div class="app-form-group">
+              <input class="app-form-control" placeholder="NAME" formControlName="title">
+              <div
+              *ngIf="
+                productForm.get('title').invalid &&
+                (productForm.get('title').dirty ||
+                  productForm.get('title').touched)
+              "
+              class="error-message-div"
+            >
+              <div *ngIf="productForm.get('title')?.errors?.required" class="app-form-group">
+                Title is required.
+              </div>
+            </div>
+            <div class="app-form-group">
+              <input class="app-form-control" formControlName="description" placeholder="DESCRIPTION">
+              <div
+              *ngIf="
+                productForm.get('description').invalid &&
+                (productForm.get('description').dirty ||
+                  productForm.get('description').touched)
+              "
+              class="error-message-div"
+            >
+              <div *ngIf="productForm.get('description')?.errors?.required">
+                description is required.
+              </div>
+            </div>
+            <div class="app-form-group">
+              <input class="app-form-control" placeholder="SHORT DESCRIPTION" formControlName="shortDesc">
+              <div
+              *ngIf="
+                productForm.get('shortDesc').invalid &&
+                (productForm.get('shortDesc').dirty ||
+                  productForm.get('shortDesc').touched)
+              "
+              class="error-message-div"
+            >
+              <div *ngIf="productForm.get('shortDesc')?.errors?.required">
+                Short Description is required.
+              </div>
+            </div>
+            </div>
+            <div class="app-form-group message">
+              <input class="app-form-control" placeholder="ADDITIONAL DETAILS" formControlName="add_desc">
+              <div
+              *ngIf="
+                productForm.get('add_desc').invalid &&
+                (productForm.get('add_desc').dirty ||
+                  productForm.get('add_desc').touched)
+              "
+              class="error-message-div"
+            >
+              <div *ngIf="productForm.get('add_desc')?.errors?.required">
+                Additional Description is required.
+              </div>
+            </div>
+            </div>
+            <div class="app-form-group message">
+              <input class="app-form-control" placeholder="IMAGE" formControlName="image">   
+<div
+*ngIf="
+  productForm.get('image').invalid &&
+  (productForm.get('image').dirty ||
+    productForm.get('image').touched)
+"
+class="error-message-div"
+>
+<div *ngIf="productForm.get('image')?.errors?.required">
+  Image Url is required.
+</div>
+</div>
+              
+            </div>
+            <div class="app-form-group message">
+              <input class="app-form-control" placeholder="IMAGES" formControlName="images">
+              <div *ngIf="productForm.get('images').invalid &&
+             (productForm.get('images').dirty ||
+            productForm.get('images').touched)" class="error-message-div">
+              <div *ngIf="productForm.get('image')?.errors?.required">
+  Image Urls are required.
+              </div>
+              </div>
+              
+            </div>
+            
+            
+
+            <div class="app-form-group message" >
+              <select class="app-form-control" formControlName="catId">
+                
+                <option
+                *ngFor="let category of categories"
+                [value]="category.id"
+                >{{ category.title }}</option
+              >
+            </select>
+            <div
+            *ngIf="
+              productForm.get('catId').invalid &&
+              (productForm.get('catId').dirty ||
+                productForm.get('catId').touched)
+            "
+            class="error-message-div"
+          >
+            <div *ngIf="productForm.get('catId')?.errors?.required">
+              Category is required.
+            </div>
+          </div>
+            </div>
+            <div class="app-form-group message" >
+              <select class="app-form-control" formControlName="var_id">
+                <option
+                  *ngFor="let variety of varieties"
+                  [value]="variety.id"
+                  >{{ variety.title }}</option
+                >
+              </select>
+            </div>
+            <div class="app-form-group message">
+              <input class="app-form-control" placeholder="QUANTITY" formControlName="quantity">
+              <div
+*ngIf="
+  productForm.get('quantity').invalid &&
+  (productForm.get('quantity').dirty ||
+    productForm.get('quantity').touched)
+"
+class="error-message-div"
+>
+<div *ngIf="productForm.get('quantity')?.errors?.required">
+  Quantity is required.
+</div>
+</div>
+              
+            </div>
+            <div class="app-form-group message">
+              <input class="app-form-control" placeholder="PRICE" formControlName="price">
+              <div
+*ngIf="
+  productForm.get('price').invalid &&
+  (productForm.get('price').dirty ||
+    productForm.get('price').touched)
+"
+class="error-message-div"
+>
+<div *ngIf="productForm.get('price')?.errors?.required">
+  price is required.
+</div>
+</div>
+            </div>
+            <div class="app-form-group buttons">
+              <button class="app-form-button"  type="submit" [disabled]="
+              (productForm.invalid || productForm.pending) &&
+              productForm.touched
+            ">ADD</button>
+              <button class="app-form-button" routerLink="/admin">BACK</button>
+             
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

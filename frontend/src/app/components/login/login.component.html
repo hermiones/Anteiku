@@ -1,0 +1,137 @@
+<br>
+<br>
+<div class="container col-md-12" id="container" >
+  
+ 
+  <div class="form-container sign-up-container ">
+   
+   
+    <form (ngSubmit)="registerUser()" [formGroup]="registrationForm" class="form-horizontal" novalidate>
+          <h1>Create Account</h1><br>
+          <ng-container *ngIf="registrationMessage?.length > 0">
+            <div class="alert alert-success alert-dismissible">
+              {{registrationMessage}}
+            </div>
+          </ng-container>
+          
+          <input type="text" placeholder="First Name" formControlName="fname" id="fname" name="fname"
+          
+          required  minlength="3" />
+          
+            <div class="form-control-feedback">
+              <ng-container *ngIf="formControls.fname.errors?.minlength && formControls.fname.touched">
+                            <span class="text-danger align-middle">
+                                <!-- Put name validation error messages here -->
+                                <i class="fa fa-close"> Minimum of 3 characters</i>
+                            </span>
+                            </ng-container>
+                            <ng-container *ngIf="formControls.fname.errors?.required && formControls.fname.touched">
+                              <span class="text-danger align-middle">
+                                  <!-- Put name validation error messages here -->
+                                  <i class="fa fa-check"> This field is required</i>
+                              </span>
+                              </ng-container>
+            </div>
+          
+          <input type="text" placeholder="Last Name" formControlName="lname" id="lname" name="lname"
+          required minlength="3" />
+          <div class="form-control-feedback">
+            <ng-container *ngIf="formControls.lname.errors?.minlength && formControls.lname.touched">
+                          <span class="text-danger align-middle">
+                              <!-- Put name validation error messages here -->
+                              <i class="fa fa-close"> Minimum of 3 characters</i>
+                          </span>
+                        </ng-container>
+                        <ng-container *ngIf="formControls.fname.errors?.required && formControls.fname.touched">
+                          <span class="text-danger align-middle">
+                              <!-- Put name validation error messages here -->
+                              <i class="fa fa-check"> This field is required</i>
+                          </span>
+                          </ng-container>
+          </div>
+          <input type="text" placeholder="Email(eg:abc@xyz.com)" formControlName="email" id="email" name="email"
+          
+          required />
+          <div class="form-control-feedback">
+            <ng-container *ngIf="formControls.email.errors?.taken && formControls.email.touched">
+               <span class="text-danger align-middle">
+                  <i class="fa fa-close"> Email Already Taken</i>
+               </span>
+            </ng-container>
+            <ng-container *ngIf="formControls.email.errors?.pattern && formControls.email.touched">
+              <span class="text-danger align-middle">
+                 <i class="fa fa-close"> Email should look like this:abc@xyz.com</i>
+              </span>
+           </ng-container>
+            <ng-container *ngIf="formControls.email.pending && formControls.email.touched">
+              <span class="text-info align-middle">
+                <i class="fa fa-hourglass"> Checking Email ....</i>
+              </span>
+            </ng-container>
+            <ng-container *ngIf="!formControls.email.errors && formControls.email.touched && !formControls.email.pending">
+               <span class="text-success align-middle">
+                              <i class="fa fa-check"> Email Available</i>
+                          </span>
+            </ng-container>
+            <ng-container *ngIf="formControls.email.errors?.required && formControls.email.touched">
+                            <span class="text-danger align-middle">
+                              <i class="fa fa-check"> Email Required</i>
+                          </span>
+            </ng-container>
+  
+          </div>
+          <input type="password" placeholder="Password" formControlName="password" id="password" name="password"
+          required />
+          <div class="form-control-feedback">
+          </div>
+          <input type="password" placeholder="Confirm Password" formControlName="confirmPassword" id="password-confirm"
+          name="password-confirmation"
+           required />
+          <div class="form-control-feedback">
+            <ng-container *ngIf="!comparePassword && formControls.confirmPassword.touched">
+                            <span class="text-danger align-middle">
+                              <i class="fa fa-close"> Passwords don't match</i>
+                          </span>
+            </ng-container>
+          </div>
+          <button [disabled]="(registrationForm.invalid || registrationForm.pending) && registrationForm.touched "
+          class="btn btn-success" type="submit">Sign Up</button>
+      </form>
+  </div>
+  <div class="form-container sign-in-container">
+      <form novalidate #myform="ngForm">
+        <ng-container *ngIf="loginMessage?.length > 0">
+          <div class="alert alert-danger alert-dismissible text-center">
+            {{loginMessage}}
+          </div>
+        </ng-container>
+          <h1>Sign in</h1>
+          <div class="social-container">
+             
+              <button href="#" class="social"  (click)="signInWithGoogle()"><i class="fa fa-google-plus"></i></button>
+          
+          </div>
+          <span>or use your account</span>
+          <input type="email" placeholder="Email" [(ngModel)]="email" name="email"  id="email" required />
+          <input type="password" placeholder="Password" id="password" [(ngModel)]="password" name="password" required/>
+         
+          <button (click)="login(myform)" [disabled]="myform.invalid && myform.touched">Sign In</button>
+      </form>
+  </div>
+  <div class="overlay-container">
+      <div class="overlay">
+          <div class="overlay-panel overlay-left">
+              <h1>Welcome Back!</h1>
+              <p>To keep connected with us please login with your personal info</p>
+              <button class="ghost" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+              <h1>Hello, Friend!</h1>
+              <p>Enter your personal details and start journey with us</p>
+              <button class="ghost" id="signUp">Sign Up</button>
+          </div>
+      </div>
+  </div>
+</div>
+<br>
+<br>
