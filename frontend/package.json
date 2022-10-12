@@ -21,7 +21,7 @@
     "@angular/router": "~9.0.6",
     "angularx-social-login": "^2.2.1",
     "bootstrap": "^4.5.0",
-    "html2pdf.js": "^0.9.2",
+    "html2pdf.js": "^0.10.1",
     "jquery": "^3.5.1",
     "ngx-owl-carousel-o": "^3.0.1",
     "ngx-spinner": "^9.0.1",
