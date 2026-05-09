@@ -17,7 +17,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from '@app/components/login/login.component';
 import {ProfileComponent} from '@app/components/profile/profile.component';
-import {AuthServiceConfig, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
+import {SocialAuthServiceConfig, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
 
 import {HomeLayoutComponent} from '@app/components/home-layout/home-layout.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -30,17 +30,15 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
-const config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('697047450043-7to9128pv5cu39b522u82g0g7lsdm78u.apps.googleusercontent.com')
-  }
-
-]);
-
-export function provideConfig() {
-  return config;
-}
+const socialLoginConfig: SocialAuthServiceConfig = {
+  autoLogin: false,
+  providers: [
+    {
+      id: GoogleLoginProvider.PROVIDER_ID,
+      provider: new GoogleLoginProvider('697047450043-7to9128pv5cu39b522u82g0g7lsdm78u.apps.googleusercontent.com')
+    }
+  ]
+};
 
 @NgModule({
   declarations: [
@@ -75,15 +73,10 @@ export function provideConfig() {
     ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    SocialLoginModule,
+    SocialLoginModule.initialize(socialLoginConfig),
     CarouselModule
   ],
-  providers: [
-    {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

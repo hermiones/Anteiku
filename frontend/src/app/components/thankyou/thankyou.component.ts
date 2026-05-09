@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {OrderService} from '../../services/order.service';
 import {Router} from '@angular/router';
-import * as html2pdf from 'html2pdf.js';
+import html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-thankyou',
@@ -38,18 +38,22 @@ export class ThankyouComponent implements OnInit {
   }
 
   onExportClick() {
-    const options = {
+    const options: any = {
       filename: 'invoice.pdf',
       image: {type: 'jpeg'},
-      html2canvas: {useCORS:true},
-      jsPDF: {orientation: 'landscape' }
+      html2canvas: {useCORS: true},
+      jsPDF: {orientation: 'landscape'}
     };
-    const content: Element = document.getElementById('content');
-     html2pdf()
+    const content = document.getElementById('content') as HTMLElement;
+    if (!content) {
+      return;
+    }
+
+    html2pdf()
       .from(content)
       .set(options)
-       .save();
-    }
+      .save();
+  }
   }
 
 

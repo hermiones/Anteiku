@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AuthService, GoogleLoginProvider, SocialUser} from 'angularx-social-login';
+import {SocialAuthService, GoogleLoginProvider, SocialUser} from 'angularx-social-login';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {BehaviorSubject, Observable, of} from 'rxjs';
@@ -18,7 +18,7 @@ export class UserService {
   loginMessage$ = new BehaviorSubject<string>(null);
   userRole: number;
 
-  constructor(private authService: AuthService,
+  constructor(private authService: SocialAuthService,
               private httpClient: HttpClient,
               private router: Router) {
 

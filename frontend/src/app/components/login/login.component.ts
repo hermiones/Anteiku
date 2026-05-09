@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AuthService} from 'angularx-social-login';
+import {SocialAuthService} from 'angularx-social-login';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {EmailValidator, FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   comparePassword: boolean;
   registrationMessage: string;
 
-  constructor(private authService: AuthService,
+  constructor(private authService: SocialAuthService,
              private fb: FormBuilder,
               private checkEmailService: CheckEmailService,
               private router: Router,

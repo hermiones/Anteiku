@@ -18,23 +18,74 @@ export class HomeComponent implements OnInit {
   show=true;
 
   products: ProductModelServer[] = [];
-  
-    public categoryAssociatedProducts: any;
-  
-    public varietyAssociatedProducts: any;
-  
-    public activeCategoryTab: number;
-  
-    public categories: CategoryModelServer[];
-  
-   public varieties: VarietyModelServer[];
-  
-  
-    constructor(private productService: ProductService,
-                private cartService: CartService,
-                private router: Router,
-                private categoryService: CategoryService,
-                private varietyService: VarietyService) { }
+
+  public featuredCategories = [
+    {
+      title: 'Ramen',
+      accent: 'Savory bowls',
+      description: 'Steamy broths, tender noodles, and premium toppings for late-night cravings.',
+      image: 'assets/img/crsl2.jpg'
+    },
+    {
+      title: 'Burgers',
+      accent: 'Modern comfort',
+      description: 'Rich savory patties and delicate buns elevated with Japanese flair.',
+      image: 'assets/img/crsl3.jpg'
+    },
+    {
+      title: 'Drinks',
+      accent: 'Crafted sips',
+      description: 'Warm teas, classic sodas, and chilled creations for every mood.',
+      image: 'assets/img/crsl4.jpg'
+    },
+    {
+      title: 'Desserts',
+      accent: 'Sweet rituals',
+      description: 'Minimal and elegant treats with moody textures and rich flavor.',
+      image: 'assets/img/crsl5.jpg'
+    }
+  ];
+
+  public testimonials = [
+    {
+      name: 'Mika Tanaka',
+      role: 'Food Critic',
+      quote: 'Anteiku feels like a secret ramen bar in the heart of Tokyo, soft lights and bold taste in every bowl.'
+    },
+    {
+      name: 'Arjun S.',
+      role: 'Night Owl',
+      quote: 'The atmosphere is cinematic, the menu is premium, and the street café energy is utterly addictive.'
+    },
+    {
+      name: 'Rina K.',
+      role: 'Cafe Lover',
+      quote: 'A beautiful modern take on Japanese comfort food — dark, warm, and effortlessly elegant.'
+    }
+  ];
+
+  public categoryAssociatedProducts: any;
+
+  public varietyAssociatedProducts: any;
+
+  public activeCategoryTab: number;
+
+  public categories: CategoryModelServer[];
+
+  public varieties: VarietyModelServer[];
+
+  constructor(private productService: ProductService,
+              private cartService: CartService,
+              private router: Router,
+              private categoryService: CategoryService,
+              private varietyService: VarietyService) { }
+
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
   
     ngOnInit(): void {
      this.categoryAssociatedProducts = [];

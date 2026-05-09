@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService, SocialUser} from 'angularx-social-login';
+import {SocialAuthService, SocialUser} from 'angularx-social-login';
 import {ResponseModel, UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
 import {map} from 'rxjs/operators';
@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
 userId;
 model: any = {};
 
-  constructor(private cartService: CartService,private authService: AuthService,
+  constructor(private cartService: CartService,private authService: SocialAuthService,
               private userService: UserService,
               private categoryService: CategoryService,
               private router: Router) {
